@@ -4,20 +4,11 @@ const GetDetail = require('express').Router()
 GetDetail.get('/',async(req,res)=>{
 
     let connection = mysql.createConnection({
-        host:'localhost',
-        database:'user',
-        user:'web_app',
-        port:4306,
-        password:null, 
-        insecureAuth: true,
-        dialect: 'mysql',   
-        multipleStatements: true,
-        pool: {
-            max: 5,
-            min: 0,
-            acquire: 30000,
-            idle: 10000
-        }
+        host:'sql12.freesqldatabase.com',
+        database:'sql12627993',
+        user:'sql12627993',
+        port:3306,
+        password:'8ZTcWDluCR'
     })
     
     connection.connect((err)=>{
