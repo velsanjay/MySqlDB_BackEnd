@@ -3,15 +3,17 @@ const GetDetail = require('express').Router()
 
 GetDetail.get('/',async(req,res)=>{
 
-    let connection = mysql.createPool({
-        host:'127.0.0.1',
-        database:'employee_database',
-        user:'root',
-        password:'root123'
+    let connection = mysql.createConnection({
+        host:'localhost',
+        database:'user',
+        user:'web_app',
+        port:4306,
+        password:null
     })
     
-    connection.query(`select * from employee_info`,(err, result, fields)=>{
-        if(err){ 
+    connection.connect((err)=>{
+        if(err){
+            console.log(err)
             res.status(401).send({
                 successs:false,
                 err
@@ -19,7 +21,7 @@ GetDetail.get('/',async(req,res)=>{
         }else{
             res.status(200).send({
                 successs:true,
-                data:result
+                message:"DB "+connection.state
             })
         }
     
