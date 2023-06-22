@@ -8,7 +8,16 @@ GetDetail.get('/',async(req,res)=>{
         database:'user',
         user:'web_app',
         port:4306,
-        password:null
+        password:null, 
+        insecureAuth: true,
+        dialect: 'mysql',   
+        multipleStatements: true,
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        }
     })
     
     connection.connect((err)=>{
