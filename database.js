@@ -4,7 +4,7 @@ const GetDetail = require('express').Router()
 GetDetail.get('/',async(req,res)=>{
 
     let connection = mysql.createPool({
-        host:'localhost',
+        host:'127.0.0.1',
         database:'employee_database',
         user:'root',
         password:'root123'
