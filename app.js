@@ -3,8 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const GetDetail = require('./database');
-// const cors = require('cors')
+const GetDetail = require('./routes/config/database');
+const InsertNewData = require('./routes/Routs/InsertDetail');
+const GetDetailRouter = require('./routes/Routs/GetAllDetail');
+const UpdateUserRouter = require('./routes/Routs/UpdateDetail');
+const DeleteUserRouter = require('./routes/Routs/DeleteDetail');
+const cors = require('cors');
+const GetByIdRouter = require('./routes/Routs/GetById');
 
 var app = express();
 
@@ -14,13 +19,17 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-// app.use(cors())
+app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', GetDetail)
 
+app.use('/', InsertNewData)
+app.use('/', GetDetailRouter)
+app.use('/', UpdateUserRouter)
+app.use('/', DeleteUserRouter)
+app.use('/get', GetByIdRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
